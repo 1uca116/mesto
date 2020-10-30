@@ -1,0 +1,12 @@
+.profile__about {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* @media screen and (min-width: 767px) {
+    .profile__about {
+      flex-direction: row;
+    }
+  } */

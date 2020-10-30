@@ -1,0 +1,9 @@
+.profile__description {
+    margin: 0 0 33px;
+  }
+  
+  @media screen and (min-width: 767x) {
+    .profile__description {
+      margin: 0 20px 0 0;
+    }
+  }
