@@ -24,7 +24,7 @@
                 <div class="profile__info">
                     <div class="profile__description">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button onclick="changePopUpVisibility()" type="button" class="profile__edit"></button>
+                        <button onclick="showPopUp()" type="button" class="profile__edit"></button>
                     </div>
                     <p class="profile__job">Исследователь океана</p>
                 </div>
@@ -99,12 +99,12 @@
         <!--Начало всплывающего окна-->
         <div class="popup">
             <div class="popup__container">
-                <button class="popup__button-close" type="button"></button>
+                <button onclick="closePopUp()" class="popup__button-close" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form onsubmit ="saveInfo()" class="popup__form">
+                <form class="popup__form">
                     <input class="popup__type-name" type="text" placeholder="Имя">
                     <input class="popup__type-job" type="text" placeholder="О себе">
-                    <button class="popup__button-save" type="submit">Сохранить</button>
+                    <button onclick="saveInfo()" class="popup__button-save" type="button">Сохранить</button>
                 </form>
             </div>
         </div>
