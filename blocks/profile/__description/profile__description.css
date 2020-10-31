@@ -1,9 +1,5 @@
 .profile__description {
-    margin: 0 0 33px;
+    display: flex;
+    align-items: center;
   }
   
-  @media screen and (min-width: 767x) {
-    .profile__description {
-      margin: 0 20px 0 0;
-    }
-  }
