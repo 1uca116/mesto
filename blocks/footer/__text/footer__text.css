@@ -4,3 +4,8 @@
     font-size: 18px;
     line-height: 1.22;
 }
+@media screen and (max-width: 480px) {
+    .footer__text {
+        padding-top: 48px;
+    }
+}

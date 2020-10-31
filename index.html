@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+  <script src="script.js"></script>
   <title>Место | Россия</title>
 </head>
 
@@ -23,7 +24,7 @@
                 <div class="profile__info">
                     <div class="profile__description">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button type="button" class="profile__edit"></button>
+                        <button onclick="changePopUpVisibility()" type="button" class="profile__edit"></button>
                     </div>
                     <p class="profile__job">Исследователь океана</p>
                 </div>
@@ -90,9 +91,24 @@
             </ul>
           </section>
         </main>
-
+        <!--Начало подвала сайта-->
         <footer class="footer">
           <p class="footer__text">&COPY; 2020 Mesto Russia</p>
         </footer>
-
+        <!--конец подвала сайта-->
+        <!--Начало всплывающего окна-->
+        <div class="popup">
+            <div class="popup__container">
+                <button class="popup__button-close" type="button"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form onsubmit ="saveInfo()" class="popup__form">
+                    <input class="popup__type-name" type="text" placeholder="Имя">
+                    <input class="popup__type-job" type="text" placeholder="О себе">
+                    <button class="popup__button-save" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+        <!--Конец всплывающего окна-->
     </div>
+    </body>
+    </html>
