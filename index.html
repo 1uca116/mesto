@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <script src="script.js"></script>
   <title>Место | Россия</title>
 </head>
 
@@ -24,15 +23,14 @@
                 <div class="profile__info">
                     <div class="profile__description">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button onclick="showPopUp()" type="button" class="profile__edit link"></button>
+                        <button type="button" class="profile__edit link"></button>
                     </div>
                     <p class="profile__job">Исследователь океана</p>
                 </div>
             </div>
             <button type="button" class="profile__add-card link"></button>
         </section>
-          <!--Начало секции с карточками-->
-          <section class="elements">
+          <!--Начало блока с карточками-->
             <ul class="places">
             <!-- начало 1 карточки -->
               <li class="card">
@@ -89,7 +87,6 @@
               </li>
               <!-- конец 6 карточки -->
             </ul>
-          </section>
         </main>
         <!--Начало подвала сайта-->
         <footer class="footer">
@@ -99,16 +96,17 @@
         <!--Начало всплывающего окна-->
         <div class="popup">
             <div class="popup__container">
-                <button onclick="closePopUp()" class="popup__button-close link" type="button"></button>
+                <button class="popup__button-close link" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form">
-                    <input class="popup__type-name" type="text" placeholder="Имя">
-                    <input class="popup__type-job" type="text" placeholder="О себе">
-                    <button onclick="saveInfo()" class="popup__button-save link" type="button">Сохранить</button>
+                    <input class="popup__type-name" type="text" name="profile-name" placeholder="Имя">
+                    <input class="popup__type-job" type="text" name="profile-job" placeholder="О себе">
+                    <button class="popup__button-save link" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
         <!--Конец всплывающего окна-->
     </div>
+<script src="./js/script.js"></script>
 </body>
 </html>
