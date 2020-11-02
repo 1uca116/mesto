@@ -1,16 +1,16 @@
-.header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: calc(100% + 19px * 2);
-    min-height: 84px;
-    border-bottom: 1px solid rgb(84,84,84);
-    box-sizing: border-box;
+.header{
+  max-width: 880px;
+  margin: 45px auto 40px;
+  border-bottom: solid 1px rgba(84, 84, 84, 0.7);
+}
+
+@media (max-width: 540px){
+  .header{
+      width: 100%;
+      margin: 0 auto 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 84px;
   }
-  
-  @media screen and (min-width: 767px) {
-    .header {
-      width: initial;
-      min-height: 119px;
-    }
-  }
+}

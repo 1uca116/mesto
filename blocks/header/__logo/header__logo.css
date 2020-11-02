@@ -1,11 +1,16 @@
 .header__logo {
-    display: block;
-    min-width: 104px; 
+  background-repeat: no-repeat;
+  width: 143px;
+  height: 34px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 540px){
+  .header__logo{
+      width: 103px;
+      height: 25px;
+      background-size: contain;
+      margin-left: 27px;
+      padding: 0;
   }
-  
-  @media screen and (min-width: 600px) {
-    .header__logo {
-      margin: 0;
-      min-width: 142px;
-    }
-  }
+}
