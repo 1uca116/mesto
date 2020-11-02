@@ -2,7 +2,6 @@
   background-repeat: no-repeat;
   width: 143px;
   height: 34px;
-  padding-bottom: 40px;
 }
 
 @media (max-width: 540px){
@@ -10,7 +9,5 @@
       width: 103px;
       height: 25px;
       background-size: contain;
-      margin-left: 27px;
-      padding: 0;
   }
 }
