@@ -32,7 +32,8 @@
         </section>
           <!--Начало блока с карточками-->
             <ul class="places">
-            
+
+
             </ul>
         </main>
         <!--Начало подвала сайта-->
@@ -61,30 +62,27 @@
               <form class="popup__form">
                 <input class="popup__input popup__input_el_card-name" type="text" name="card-name" placeholder="Название">
                 <input class="popup__input popup__input_el_card-link" type="text" name="card-link" placeholder="Ссылка на картинку">
-                <button type="submit" class="popup__button-save link">Создать</button>
+                <button  class="popup__button-save link" type="submit">Создать</button>
               </form>
           </div>
         </div>
         <!--Конец всплывающего окна "добавление карточки"-->
         <!--Начало попапа с открывающейся картинкой-->
-        <div class="popup popup_open-picture">
-          <div class="popup__container popup__container_picture">
-            <button type="button" class="button button_type_close-popup"></button>
-            <figure class="popup__figure">
-              <img src="https://www.russiadiscovery.ru/upload/files/files/Elbrus_1%281%29.jpg" alt="Эльбрус" class="popup__image">
-              <figcaption class="popup__description">Эльбрус</figcaption>
-            </figure>
-          </div>
+        <div class='popup popup_open-picture'>
+            <div class='popup__container popup__container_picture'>
+                <button type="button" class="popup__button-close link"></button>
+                <img class='popup__picture' src='#' alt=''>
+                <h3 class='popup__description'></h3>
+            </div>
         </div>
         <!--Конец попапа с открывающейся картинкой-->
-
       </div>
       
         <!--Начало блока с template элементами-->
         <template id="card-template">
           <li class="card">
             <button type="button" class="card__button-delete link"></button>
-            <img src="https://www.russiadiscovery.ru/upload/files/files/Samie-krasivie-mesta-Rossii.jpg" alt="" class="card__image">
+            <img src="#" alt="" class="card__image">
             <div class="card__info">
               <h2 class="card__name"></h2>
               <button type="button" class="card__button-like link"></button>
