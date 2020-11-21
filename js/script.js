@@ -46,30 +46,32 @@ function getCardLikeButtonElement(parent) {
 
 function createCard(template, imageLink, imageName) {
     const newElement = template.cloneNode(true);
-    newElement.querySelector('.card__image').src = imageLink;
-    newElement.querySelector('.card__image').alt = imageName;
+    const cardImage = getCardImageElement(newElement);
+    cardImage.src = imageLink;
+    cardImage.alt = imageName;
+    console.log(cardImage.alt, imageName);
     newElement.querySelector('.card__name').textContent = imageName;
+
+    getCardLikeButtonElement(newElement)
+        .addEventListener('click', function (evt) {
+        evt.target.classList.toggle('card__button-like_active');
+    });
+
+    getCardDeleteButtonElement(newElement)
+        .addEventListener('click', function (deleteButton) {
+        deleteButton.target.closest('.card').remove();
+    });
+
+    getCardImageElement(newElement)
+        .addEventListener('click', function () {
+            openImagePopup(imageLink, imageName);
+    });
 
     return newElement;
 }
 
 initialCards.forEach(item => {
     const card = createCard(cardTemplateContent, item.link, item.name);
-    getCardLikeButtonElement(card)
-        .addEventListener('click', function (evt) {
-        evt.target.classList.toggle('card__button-like_active');
-    });
-
-    getCardDeleteButtonElement(card)
-        .addEventListener('click', function (deleteButton) {
-        deleteButton.target.closest('.card').remove();
-    });
-
-    getCardImageElement(card)
-        .addEventListener('click', function () {
-            openImagePopup(item.link, item.name);
-    });
-
     placesList.append(card);
 })
 
@@ -150,32 +152,15 @@ function formSubmitHandler (evt) {
 function addCardSaveHandler (evt) {
     evt.preventDefault();
     
-
     const data = {
         link: popupInputCardLink.value,
         name: popupInputCardName.value
     }
 
     const card = createCard(cardTemplateContent, data.link, data.name);
-
-    getCardDeleteButtonElement(card)
-        .addEventListener('click', function (deleteButton) {
-            deleteButton.target.closest('.card').remove();
-    });
-    getCardImageElement(card)
-        .addEventListener('click', function () {
-            openImagePopup(data.link, data.name);
-    });
-    getCardLikeButtonElement(card)
-        .addEventListener('click', function (evt) {
-            evt.target.classList.toggle('card__button-like_active');
-    });
-
     placesList.prepend(card);
-
     closeAddCardPopUp();
 }
-
 
 
 //event handlers
