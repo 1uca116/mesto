@@ -37,6 +37,7 @@
 @import url('./../blocks/popup/__form/_field/popup__form_field.css');
 @import url('./../blocks/popup/__title/popup__title.css');
 @import url('./../blocks/popup/__input/popup__input.css');
+@import url('./../blocks/popup/__input/_error/popup__input_error.css');
 @import url('./../blocks/popup/__error/popup__error.css');
 
 
