@@ -47,8 +47,10 @@
                 <button class="popup__button-close link" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form">
-                    <input class="popup__input popup__input_el_name" type="text" name="profile-name" placeholder="Имя">
-                    <input class="popup__input popup__input_el_job" type="text" name="profile-job" placeholder="О себе">
+                    <input class="popup__input popup__input_el_name" type="text" name="profile-name" placeholder="Имя" required>
+                    <span id="profile-name-error" class="popup__error"></span>
+                    <input class="popup__input popup__input_el_job" type="text" name="profile-job" placeholder="О себе" required>
+                    <span id="profile-job-error" class="popup__error"></span>
                     <button class="popup__button-save link" type="submit">Сохранить</button>
                 </form>
             </div>
@@ -90,6 +92,7 @@
           </li>
         </template>
         <!--Конец блока с template элементами-->
-<script src="./js/script.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/validate.js"></script>
 </body>
 </html>

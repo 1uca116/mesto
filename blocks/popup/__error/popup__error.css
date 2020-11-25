@@ -1,0 +1,6 @@
+.popup__error {
+    color: #FF0000;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+}
