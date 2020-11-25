@@ -173,3 +173,18 @@ addCardPopUpCloseButton.addEventListener('click', closeAddCardPopUp);
 addCardFormElement.addEventListener('submit', addCardSaveHandler );
 
 imageContainerCloseButton.addEventListener('click', closeImageContainer);
+
+document.addEventListener('keydown', function (evt) {
+    const popup = document.querySelector('.popup_opened');
+    if (popup && evt.key === 'Escape') {
+        closePopUp(popup);
+    }
+});
+
+[popUpElement, addCardPopup, imagePopUpElement].forEach(element => {
+    element.addEventListener('click', function (evt) {
+        if (element.classList.contains('popup_opened') && evt.target === element) {
+            closePopUp(element);
+        }
+    });
+})
