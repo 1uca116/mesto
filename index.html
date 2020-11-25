@@ -46,11 +46,15 @@
             <div class="popup__container">
                 <button class="popup__button-close link" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form">
-                    <input class="popup__input popup__input_el_name" type="text" name="profile-name" placeholder="Имя" required>
-                    <span id="profile-name-error" class="popup__error"></span>
-                    <input class="popup__input popup__input_el_job" type="text" name="profile-job" placeholder="О себе" required>
-                    <span id="profile-job-error" class="popup__error"></span>
+                <form class="popup__form" novalidate>
+                  <label class="popup__form_field" for="name-label">
+                    <input id="name-label" class="popup__input popup__input_el_name" type="text" name="profile-name" placeholder="Имя" minlength="2" maxlength="40" required>
+                    <span id="name-label-error" class="popup__error"></span>
+                  </label>
+                  <label class="popup__form_field" for="job-label">
+                    <input id="job-label" class="popup__input popup__input_el_job" type="text" name="profile-job" placeholder="О себе" minlength="2" maxlength="200" required>
+                    <span id="job-label-error" class="popup__error"></span>
+                  </label>
                     <button class="popup__button-save link" type="submit">Сохранить</button>
                 </form>
             </div>
