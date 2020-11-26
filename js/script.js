@@ -125,12 +125,17 @@ function openImagePopup(imageLink, imageCaption) {
     imageCaptionElement.textContent = imageCaption;
 }
 
+function resetForm(form) {
+    form.reset();
+}
 
 function closeEditProfilePopUp() {
+    resetForm(formElement);
     closePopUp(popUpElement);
 }
 
 function closeAddCardPopUp() {
+    resetForm(addCardFormElement);
     closePopUp(addCardPopup);
 }
 
