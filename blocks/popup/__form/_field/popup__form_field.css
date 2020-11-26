@@ -1,8 +1,7 @@
 .popup__form_field {
     position: relative;
     display: block;
-    margin-bottom: 30px;
 }
 .popup__form_field:last-of-type {
-    margin-top: 13px;
+    margin-bottom: 31px;
 }
