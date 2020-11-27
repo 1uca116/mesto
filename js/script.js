@@ -116,12 +116,15 @@ function closePopUp(element) {
 
 function openEditProfilePopUp() {
     openPopUp(profilePopup);
+    resetForm(profileFormElement);
     popupInputName.value = profileName.textContent;
     popupInputJob.value = profileJob.textContent;
 }
 
+
 function openAddCardPopup() {
     openPopUp(addCardPopup);
+    resetForm(addCardFormElement);
     popupInputCardName.value = '';
     popupInputCardLink.value = '';
 }
@@ -154,12 +157,10 @@ function resetForm(form) {
 }
 
 function closeEditProfilePopUp() {
-    resetForm(formElement);
     closePopUp(profilePopup);
 }
 
 function closeAddCardPopUp() {
-    resetForm(addCardFormElement);
     closePopUp(addCardPopup);
 }
 
