@@ -61,10 +61,9 @@ function createCard(template, imageLink, imageName) {
             deleteButton.target.closest('.card').remove();
         });
 
-    getCardImageElement(newElement)
-        .addEventListener('click', function () {
-            openImagePopup(imageLink, imageName);
-        });
+    cardImage.addEventListener('click', function () {
+        openImagePopup(imageLink, imageName);
+    });
 
     return newElement;
 }
@@ -74,13 +73,13 @@ initialCards.forEach(item => {
     placesList.append(card);
 })
 
-
-
 const formElement = document.querySelector('.popup__form');
-const popUpElement = document.querySelector('.popup');
+
+const profilePopup = document.querySelector('.popup_profile');
+const profileForm = profilePopup.querySelector('.popup__form');
 
 const editButton = document.querySelector('.profile__edit')
-const popUpCloseButton = document.querySelector('.popup__button-close')
+const popUpCloseButton = profilePopup.querySelector('.popup__button-close')
 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
@@ -98,22 +97,34 @@ const addCardPopUpCloseButton = addCardPopup.querySelector('.popup__button-close
 const popupInputCardName = addCardPopup.querySelector('.popup__input_el_card-name');
 const popupInputCardLink = addCardPopup.querySelector('.popup__input_el_card-link');
 
+function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+        const popup = document.querySelector('.popup_opened');
+        closePopUp(popup);
+    }
+}
+
 function openPopUp(element) {
     element.classList.add('popup_opened');
+    document.addEventListener('keyup', closeByEscape)
 }
 
 function closePopUp(element) {
     element.classList.remove('popup_opened');
+    document.removeEventListener('keyup', closeByEscape);
 }
 
 function openEditProfilePopUp() {
-    openPopUp(popUpElement);
+    openPopUp(profilePopup);
+    resetForm(profileForm);
     popupInputName.value = profileName.textContent;
     popupInputJob.value = profileJob.textContent;
 }
 
+
 function openAddCardPopup() {
     openPopUp(addCardPopup);
+    resetForm(addCardFormElement);
     popupInputCardName.value = '';
     popupInputCardLink.value = '';
 }
@@ -146,12 +157,10 @@ function resetForm(form) {
 }
 
 function closeEditProfilePopUp() {
-    resetForm(formElement);
-    closePopUp(popUpElement);
+    closePopUp(profilePopup);
 }
 
 function closeAddCardPopUp() {
-    resetForm(addCardFormElement);
     closePopUp(addCardPopup);
 }
 
@@ -205,11 +214,9 @@ document.addEventListener('keydown', function (evt) {
     }
 });
 
-[popUpElement, addCardPopup, imagePopUpElement].forEach(element => {
-    const form = element.querySelector('.popup__form');
+[profilePopup, addCardPopup, imagePopUpElement].forEach(element => {
     element.addEventListener('click', function (evt) {
         if (element.classList.contains('popup_opened') && evt.target === element) {
-            resetForm(form);
             closePopUp(element);
         }
     });
