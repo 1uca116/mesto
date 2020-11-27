@@ -116,7 +116,7 @@ function closePopUp(element) {
 
 function openEditProfilePopUp() {
     openPopUp(profilePopup);
-    resetForm(profileFormElement);
+    resetForm(profileForm);
     popupInputName.value = profileName.textContent;
     popupInputJob.value = profileJob.textContent;
 }
