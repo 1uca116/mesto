@@ -61,10 +61,9 @@ function createCard(template, imageLink, imageName) {
             deleteButton.target.closest('.card').remove();
         });
 
-    getCardImageElement(newElement)
-        .addEventListener('click', function () {
-            openImagePopup(imageLink, imageName);
-        });
+    cardImage.addEventListener('click', function () {
+        openImagePopup(imageLink, imageName);
+    });
 
     return newElement;
 }
@@ -74,13 +73,13 @@ initialCards.forEach(item => {
     placesList.append(card);
 })
 
-
-
 const formElement = document.querySelector('.popup__form');
-const popUpElement = document.querySelector('.popup');
+
+const profilePopup = document.querySelector('.popup_profile');
+const profileForm = profilePopup.querySelector('.popup__form');
 
 const editButton = document.querySelector('.profile__edit')
-const popUpCloseButton = document.querySelector('.popup__button-close')
+const popUpCloseButton = profilePopup.querySelector('.popup__button-close')
 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
@@ -205,11 +204,9 @@ document.addEventListener('keydown', function (evt) {
     }
 });
 
-[popUpElement, addCardPopup, imagePopUpElement].forEach(element => {
-    const form = element.querySelector('.popup__form');
+[profilePopup, addCardPopup, imagePopUpElement].forEach(element => {
     element.addEventListener('click', function (evt) {
         if (element.classList.contains('popup_opened') && evt.target === element) {
-            resetForm(form);
             closePopUp(element);
         }
     });
