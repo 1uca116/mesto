@@ -73,7 +73,7 @@ initialCards.forEach(item => {
     placesList.append(card);
 })
 
-const formElement = document.querySelector('.popup__form');
+
 
 const profilePopup = document.querySelector('.popup_profile');
 const profileForm = profilePopup.querySelector('.popup__form');
@@ -84,8 +84,8 @@ const popUpCloseButton = profilePopup.querySelector('.popup__button-close')
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
-const popupInputName = formElement.querySelector('.popup__input_el_name');
-const popupInputJob = formElement.querySelector('.popup__input_el_job');
+const popupInputName = profilePopup.querySelector('.popup__input_el_name');
+const popupInputJob = profilePopup.querySelector('.popup__input_el_job');
 
 
 
@@ -193,7 +193,7 @@ function addCardSaveHandler (evt) {
 }
 
 //event handlers
-formElement.addEventListener('submit', formSubmitHandler);
+profilePopup.addEventListener('submit', formSubmitHandler);
 popUpCloseButton.addEventListener('click', closeEditProfilePopUp);
 editButton.addEventListener('click', openEditProfilePopUp);
 
@@ -203,16 +203,6 @@ addCardFormElement.addEventListener('submit', addCardSaveHandler );
 
 imageContainerCloseButton.addEventListener('click', closeImageContainer);
 
-document.addEventListener('keydown', function (evt) {
-    const popup = document.querySelector('.popup_opened');
-    if (popup) {
-        const form = popup.querySelector('.popup__form');
-        if (evt.key === 'Escape') {
-            resetForm(form)
-            closePopUp(popup);
-        }
-    }
-});
 
 [profilePopup, addCardPopup, imagePopUpElement].forEach(element => {
     element.addEventListener('click', function (evt) {
