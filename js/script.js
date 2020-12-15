@@ -1,3 +1,6 @@
+import {Card} from './Card.js'
+import {FormValidator} from "./FormValidator.js";
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -34,42 +37,13 @@ const imageElement = imagePopUpElement.querySelector('.popup__picture');
 const imageCaptionElement = imagePopUpElement.querySelector('.popup__description');
 const imageContainerCloseButton = imagePopUpElement.querySelector('.popup__button-close');
 
-function getCardImageElement(parent) {
-    return parent.querySelector('.card__image');
-}
-function getCardDeleteButtonElement(parent) {
-    return parent.querySelector('.card__button-delete');
-}
-function getCardLikeButtonElement(parent) {
-    return parent.querySelector('.card__button-like');
-}
-
-function createCard(template, imageLink, imageName) {
-    const newElement = template.cloneNode(true);
-    const cardImage = getCardImageElement(newElement);
-    cardImage.src = imageLink;
-    cardImage.alt = imageName;
-    newElement.querySelector('.card__name').textContent = imageName;
-
-    getCardLikeButtonElement(newElement)
-        .addEventListener('click', function (evt) {
-            evt.target.classList.toggle('card__button-like_active');
-        });
-
-    getCardDeleteButtonElement(newElement)
-        .addEventListener('click', function (deleteButton) {
-            deleteButton.target.closest('.card').remove();
-        });
-
-    cardImage.addEventListener('click', function () {
-        openImagePopup(imageLink, imageName);
-    });
-
-    return newElement;
-}
 
 initialCards.forEach(item => {
-    const card = createCard(cardTemplateContent, item.link, item.name);
+    const card = new Card(
+        item.name,
+        item.link,
+        cardTemplateContent,
+        openImagePopup).generateCard();
     placesList.append(card);
 })
 
@@ -135,6 +109,8 @@ function openImagePopup(imageLink, imageCaption) {
     imageCaptionElement.textContent = imageCaption;
 }
 
+
+
 function removeErrors(form) {
     form.querySelectorAll('.popup__error')
         .forEach(x => {
@@ -186,8 +162,11 @@ function addCardSaveHandler (evt) {
         link: popupInputCardLink.value,
         name: popupInputCardName.value
     }
-
-    const card = createCard(cardTemplateContent, data.link, data.name);
+    const card = new Card(
+        data.name,
+        data.link,
+        cardTemplateContent,
+        openImagePopup).generateCard();
     placesList.prepend(card);
     closeAddCardPopUp();
 }
@@ -210,4 +189,9 @@ imageContainerCloseButton.addEventListener('click', closeImageContainer);
             closePopUp(element);
         }
     });
+})
+
+Array.from(document.querySelectorAll(".popup__form")).forEach(x => {
+    const formValidator = new FormValidator(x);
+    formValidator.enableValidation();
 })
