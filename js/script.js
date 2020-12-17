@@ -106,7 +106,7 @@ function openAddCardPopup() {
 function openImagePopup(imageLink, imageCaption) {
     openPopUp(imagePopUpElement);
     imageElement.src = imageLink;
-    imageElement.alt = imageLink;
+    imageElement.alt = imageCaption;
     imageCaptionElement.textContent = imageCaption;
 }
 
@@ -189,7 +189,15 @@ imageContainerCloseButton.addEventListener('click', closeImageContainer);
     });
 })
 
+
 Array.from(document.querySelectorAll(".popup__form")).forEach(element => {
-    const formValidator = new FormValidator(element);
+    const selectors = {
+        inputSelector: '.popup__input',
+        submitButtonSelector: '.popup__button-save',
+        inactiveButtonClass: 'popup__button-save_disabled',
+        inputErrorClass: 'popup__input_error',
+        errorClass: 'popup__error_visible'
+    }
+    const formValidator = new FormValidator(element, selectors);
     formValidator.enableValidation();
 })
