@@ -1,13 +1,8 @@
 export class FormValidator {
- _selectors = {
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_disabled',
-    inputErrorClass: 'popup__input_error',
-    errorClass: 'popup__error_visible'
-}
+
     constructor(form) {
         this._form = form;
+        this._selectors = selectors;
     }
     enableValidation() {
         this._form.addEventListener('submit', function (evt) {
@@ -50,7 +45,6 @@ export class FormValidator {
         }
     };
     _setEventListeners () {
-        const t = this
         const inputList = Array.from(this._form.querySelectorAll(this._selectors.inputSelector));
         const buttonElement = this._form.querySelector(this._selectors.submitButtonSelector);
         this._toggleButtonState(inputList, buttonElement);

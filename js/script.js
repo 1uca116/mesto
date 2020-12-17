@@ -106,6 +106,7 @@ function openAddCardPopup() {
 function openImagePopup(imageLink, imageCaption) {
     openPopUp(imagePopUpElement);
     imageElement.src = imageLink;
+    imageElement.alt = imageLink;
     imageCaptionElement.textContent = imageCaption;
 }
 
@@ -132,9 +133,6 @@ function resetForm(form) {
     form.reset();
 }
 
-function closeEditProfilePopUp() {
-    closePopUp(profilePopup);
-}
 
 function closeAddCardPopUp() {
     closePopUp(addCardPopup);
@@ -150,7 +148,7 @@ function formSubmitHandler (evt) {
 
     profileName.textContent = popupInputName.value;
     profileJob.textContent = popupInputJob.value;
-    closeEditProfilePopUp();
+    closePopUp(profilePopup);
 }
 
 
@@ -173,7 +171,7 @@ function addCardSaveHandler (evt) {
 
 //event handlers
 profilePopup.addEventListener('submit', formSubmitHandler);
-popUpCloseButton.addEventListener('click', closeEditProfilePopUp);
+popUpCloseButton.addEventListener('click', closePopUp(profilePopup));
 editButton.addEventListener('click', openEditProfilePopUp);
 
 addCardButton.addEventListener('click', openAddCardPopup);
@@ -191,7 +189,7 @@ imageContainerCloseButton.addEventListener('click', closeImageContainer);
     });
 })
 
-Array.from(document.querySelectorAll(".popup__form")).forEach(x => {
-    const formValidator = new FormValidator(x);
+Array.from(document.querySelectorAll(".popup__form")).forEach(element => {
+    const formValidator = new FormValidator(element);
     formValidator.enableValidation();
 })
