@@ -1,6 +1,6 @@
-.card__button-like_active {
+.card__button-like {
     background-color: transparent;
-    background-image: url('./../../../../images/icons/heart-black.svg');
+    background-image: url('../../../images/icons/heart.svg');
     background-repeat: no-repeat;
     background-position: center;
     width: 21px;

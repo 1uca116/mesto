@@ -36,13 +36,3 @@ export class Card {
             });
     }
 }
-
-
-
-
-
-
-
-
-
-
