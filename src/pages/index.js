@@ -1,11 +1,11 @@
-import './pages/index.css'
-import {Card} from './components/Card.js'
-import {FormValidator} from "./components/FormValidator.js";
-import {Section} from "./components/Section.js";
-import {PopupWithForm} from "./components/PopupWithForm.js";
-import {PopupWithImage} from "./components/PopupWithImage.js";
-import {UserInfo} from "./components/UserInfo.js";
-import * as constants from "./utils/constants.js";
+import './index.css'
+import {Card} from '../components/Card.js'
+import {FormValidator} from "../components/FormValidator.js";
+import {Section} from "../components/Section.js";
+import {PopupWithForm} from "../components/PopupWithForm.js";
+import {PopupWithImage} from "../components/PopupWithImage.js";
+import {UserInfo} from "../components/UserInfo.js";
+import * as constants from "../utils/constants.js";
 
 const cardTemplateContent = document.querySelector('#card-template').content;
 const userInfo = new UserInfo('.profile__name','.profile__job');
@@ -34,13 +34,10 @@ function onProfileEditSubmit(values) {
 }
 
 function onAddCardSubmit(values) {
-    const card = new Card(
-        values.imageTitle,
-        values.imageLink,
-        cardTemplateContent,
-        imagePopUp.open.bind(imagePopUp));
-    section.addCard(card.generateCard());
+    const card = renderer(values.imageLink, values.imageTitle)
+    section.addCard(card);
 }
+
 const profileEditPopup = new PopupWithForm('.popup_profile', onProfileEditSubmit );
 const addCardPopup = new PopupWithForm('.popup_add-card', onAddCardSubmit );
 

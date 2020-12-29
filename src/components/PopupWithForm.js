@@ -4,6 +4,7 @@ export class PopupWithForm extends Popup {
     constructor(selector, onSubmit) {
         super(selector);
         this._onSubmit = onSubmit;
+        this._form = this._element.querySelector('.popup__form');
     }
 
     setEventListeners() {
@@ -12,10 +13,10 @@ export class PopupWithForm extends Popup {
     }
 
     close() {
-        const form = this._element.querySelector('.popup__form');
-        this._resetForm(form);
+        this._form.reset();
         super.close();
     }
+
 
     _resetForm(form) {
         this._removeErrors(form);
@@ -43,23 +44,22 @@ export class PopupWithForm extends Popup {
             evt.preventDefault();
             const values = this._getInputValues();
             this._onSubmit(values);
-            super.close();
+            this.close();
         })
     }
 
     _getInputValues() {
-        if (this._element.classList.contains('popup_profile')) {
-            return {
-                name: this._element.querySelector('.popup__input_el_name').value,
-                job: this._element.querySelector('.popup__input_el_job').value
-            };
-        } else if (this._element.classList.contains('popup_add-card')) {
-            return {
-                imageLink: this._element.querySelector('.popup__input_el_card-link').value,
-                imageTitle: this._element.querySelector('.popup__input_el_card-name').value
+        this._inputList = this._popupElement.querySelectorAll('.popup__input');
+
+        this._formValues = {};
+        this._inputList.forEach(input => this._formValues[input.name] = input.value);
+
+        Array.from(this._form.elements).forEach(element => {
+            if (element.classList.contains('form__input')) {
+                this._formValues[element.name] = element.value;
             }
-        } else {
-            return {};
-        }
+        })
+
+        return this._formValues;
     }
 }
