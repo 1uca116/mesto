@@ -18,7 +18,6 @@ export class Popup {
         document.removeEventListener('keyup', this._handleEscClose);
     }
 
-
     setEventListeners() {
         this._element.addEventListener('click', evt => {
             if (evt.target === this._element){

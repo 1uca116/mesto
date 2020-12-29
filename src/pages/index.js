@@ -27,14 +27,14 @@ section.render();
 
 function onProfileEditSubmit(values) {
     const data = {
-        name: values.name,
-        job: values.job
+        name: values['profile-name'],
+        job: values['profile-job']
     }
     userInfo.setUserInfo(data);
 }
 
 function onAddCardSubmit(values) {
-    const card = renderer(values.imageLink, values.imageTitle)
+    const card = renderer(values['card-link'], values['card-name'])
     section.addCard(card);
 }
 
@@ -46,21 +46,21 @@ const addCardPopup = new PopupWithForm('.popup_add-card', onAddCardSubmit );
 });
 
 const editButton = document.querySelector('.profile__edit');
-editButton.addEventListener('click', profileEditPopup.open.bind(profileEditPopup));
+editButton.addEventListener('click', () => {
+    profileFormValidator.resetErrors();
+    profileEditPopup.open();
+});
 
 const addCardButton = document.querySelector('.profile__add-card');
-addCardButton.addEventListener('click', addCardPopup.open.bind(addCardPopup));
+addCardButton.addEventListener('click', () => {
+    addCardFormValidator.resetErrors();
+    addCardPopup.open();
+});
 
+const popupProfileForm = document.querySelector('.popup__form_profile');
+const profileFormValidator = new FormValidator(popupProfileForm, constants.selectors);
+profileFormValidator.enableValidation();
 
-
-Array.from(document.querySelectorAll(".popup__form")).forEach(element => {
-    const selectors = {
-        inputSelector: '.popup__input',
-        submitButtonSelector: '.popup__button-save',
-        inactiveButtonClass: 'popup__button-save_disabled',
-        inputErrorClass: 'popup__input_error',
-        errorClass: 'popup__error_visible'
-    }
-    const formValidator = new FormValidator(element, selectors);
-    formValidator.enableValidation();
-})
+const addCardForm = document.querySelector('.popup__form_add-card');
+const addCardFormValidator = new FormValidator(addCardForm, constants.selectors);
+addCardFormValidator.enableValidation();

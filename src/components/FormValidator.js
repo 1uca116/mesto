@@ -55,6 +55,12 @@ export class FormValidator {
             });
         });
     };
+    resetErrors() {
+        const inputList = Array.from(this._form.querySelectorAll(this._selectors.inputSelector));
+        const buttonElement = this._form.querySelector(this._selectors.submitButtonSelector);
+        inputList.forEach(input => this._hideInputError(input));
+        this._toggleButtonState(inputList, buttonElement);
+    }
 }
 
 
