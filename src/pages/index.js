@@ -48,6 +48,9 @@ const addCardPopup = new PopupWithForm('.popup_add-card', onAddCardSubmit );
 const editButton = document.querySelector('.profile__edit');
 editButton.addEventListener('click', () => {
     profileFormValidator.resetErrors();
+    const data = userInfo.getUserInfo();
+    constants.nameInput.value = data.name;
+    constants.jobInput.value = data.job;
     profileEditPopup.open();
 });
 

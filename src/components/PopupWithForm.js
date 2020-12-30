@@ -33,12 +33,6 @@ export class PopupWithForm extends Popup {
         this._formValues = {};
         this._inputList.forEach(input => this._formValues[input.name] = input.value);
 
-        Array.from(this._form.elements).forEach(element => {
-            if (element.classList.contains('form__input')) {
-                this._formValues[element.name] = element.value;
-            }
-        })
-
         return this._formValues;
     }
 }

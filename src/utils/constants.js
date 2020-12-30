@@ -25,6 +25,10 @@ export const initialCards = [
     }
 ];
 
+export const nameInput = document.querySelector('.popup__input_el_name');
+export const jobInput = document.querySelector('.popup__input_el_job');
+
+
 export const selectors = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button-save',
