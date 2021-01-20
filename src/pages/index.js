@@ -8,7 +8,7 @@ import {UserInfo} from "../components/UserInfo.js";
 import * as constants from "../utils/constants.js";
 
 const cardTemplateContent = document.querySelector('#card-template').content;
-const userInfo = new UserInfo('.profile__name','.profile__job');
+const userInfo = new UserInfo('.profile__name','.profile__job', '.profile__photo');
 const imagePopUp = new PopupWithImage('.popup_open-picture');
 
 
@@ -38,10 +38,20 @@ function onAddCardSubmit(values) {
     section.addCard(card);
 }
 
+function onAvatarUpdate(values) {
+    userInfo.setUserAvatar(values)
+}
+
+function onSubmitAction() {
+
+}
+
 const profileEditPopup = new PopupWithForm('.popup_profile', onProfileEditSubmit );
 const addCardPopup = new PopupWithForm('.popup_add-card', onAddCardSubmit );
+const updateAvatarPopup = new PopupWithForm('.popup_update-avatar', onAvatarUpdate);
+const submitPopup = new PopupWithForm('.popup_confirmation-type', onSubmitAction);
 
-[imagePopUp, profileEditPopup, addCardPopup].forEach(popup => {
+[imagePopUp, profileEditPopup, addCardPopup, updateAvatarPopup, submitPopup].forEach(popup => {
     popup.setEventListeners();
 });
 
@@ -60,6 +70,12 @@ addCardButton.addEventListener('click', () => {
     addCardPopup.open();
 });
 
+const profileOverlayButton = document.querySelector('.profile__overlay');
+profileOverlayButton.addEventListener('click', () => {
+    addCardFormValidator.resetErrors();
+    updateAvatarPopup.open();
+});
+
 const popupProfileForm = document.querySelector('.popup__form_profile');
 const profileFormValidator = new FormValidator(popupProfileForm, constants.selectors);
 profileFormValidator.enableValidation();
@@ -67,3 +83,7 @@ profileFormValidator.enableValidation();
 const addCardForm = document.querySelector('.popup__form_add-card');
 const addCardFormValidator = new FormValidator(addCardForm, constants.selectors);
 addCardFormValidator.enableValidation();
+
+const avatarEditForm = document.querySelector('.popup_update-avatar');
+const avatarEditFormValidator = new FormValidator(avatarEditForm, constants.selectors);
+avatarEditFormValidator.enableValidation();
