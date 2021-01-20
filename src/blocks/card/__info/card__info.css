@@ -1,8 +1,13 @@
 .card__info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 25px 21px;
-    box-sizing: border-box;
 }
+
+
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    background-color: white;*/
+/*    padding: 25px 21px;*/
+/*    box-sizing: border-box;*/
+/*}*/

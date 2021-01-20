@@ -1,7 +1,7 @@
-
 .card__like_counter {
-    width:20px;
-    height: 18px;
-    text-align: center;
-    /* display: none; */
+    color: black;
+    font-size: 13px;
+    position: absolute;
+    right: 25px;
+    bottom: 5px;
 }

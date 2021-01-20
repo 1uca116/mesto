@@ -1,9 +1,18 @@
 .card__button-like {
-    background-color: transparent;
+    position: absolute;
+    border: none;
     background-image: url('../../../images/icons/heart.svg');
-    background-repeat: no-repeat;
-    background-position: center;
     width: 21px;
-    height: 19px;
-    border: 0;
+    height: 18px;
+    background-color: white;
+    right: 19px;
+    bottom: 39px;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 767px) {
+    .card__button-like {
+        right: 17px;
+        bottom: 27px;
+    }
 }

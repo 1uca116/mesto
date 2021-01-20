@@ -23,6 +23,9 @@
 @import url('../blocks/card/__button-like/_active/card__button-like_active.css');
 @import url('../blocks/card/__button-delete/card__button-delete.css');
 @import url('../blocks/card/__name/card__name.css');
+
+@import url('../blocks/card/__like/_counter/card__like_counter.css');
+
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__text/footer__text.css');
 @import url('../blocks/popup/popup.css');
