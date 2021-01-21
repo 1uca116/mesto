@@ -21,8 +21,7 @@ export class SubmitPopup extends Popup {
     }
 
     _handleSubmitForm() {
-        this._form();
-        form.addEventListener('submit', evt => {
+        this._form.addEventListener('submit', evt => {
             evt.preventDefault();
             console.log(this._card)
             const submitButton = this._element.querySelector('.popup__button-save');

@@ -24,7 +24,7 @@ const imagePopUp = new PopupWithImage('.popup_open-picture');
 function renderer(data) {
     return new Card(
         data,
-        cardTemplateContent,
+        constants.cardTemplateContent,
         imagePopUp.open.bind(imagePopUp),
         (cardId, cardElement) => {
             submitPopup.open(cardId, cardElement);
@@ -100,7 +100,7 @@ const submitPopup = new SubmitPopup('.popup_confirmation', onSubmitAction);
     popup.setEventListeners();
 });
 
-editButton.addEventListener('click', () => {
+constants.editButton.addEventListener('click', () => {
     profileFormValidator.resetErrors();
     const data = userInfo.getUserInfo();
     constants.nameInput.value = data.name;
@@ -108,21 +108,21 @@ editButton.addEventListener('click', () => {
     profileEditPopup.open();
 });
 
-addCardButton.addEventListener('click', () => {
+constants.addCardButton.addEventListener('click', () => {
     addCardFormValidator.resetErrors();
     addCardPopup.open();
 });
 
-profileOverlayButton.addEventListener('click', () => {
+constants.profileOverlayButton.addEventListener('click', () => {
     addCardFormValidator.resetErrors();
     updateAvatarPopup.open();
 });
 
-const profileFormValidator = new FormValidator(popupProfileForm, constants.selectors);
+const profileFormValidator = new FormValidator(constants.popupProfileForm, constants.selectors);
 profileFormValidator.enableValidation();
 
-const addCardFormValidator = new FormValidator(addCardForm, constants.selectors);
+const addCardFormValidator = new FormValidator(constants.addCardForm, constants.selectors);
 addCardFormValidator.enableValidation();
 
-const avatarEditFormValidator = new FormValidator(avatarEditForm, constants.selectors);
+const avatarEditFormValidator = new FormValidator(constants.avatarEditForm, constants.selectors);
 avatarEditFormValidator.enableValidation();
