@@ -1,3 +1,5 @@
+import {FormValidator} from "../components/FormValidator";
+
 export const initialCards = [
     {
         name: 'Архыз',
@@ -40,3 +42,13 @@ export const selectors = {
     inputErrorClass: 'popup__input_error',
     errorClass: 'popup__error_visible'
 }
+
+export const cardTemplateContent = document.querySelector('#card-template').content;
+
+
+export const editButton = document.querySelector('.profile__edit');
+export const addCardButton = document.querySelector('.profile__add-card');
+export const profileOverlayButton = document.querySelector('.profile__overlay');
+export const popupProfileForm = document.querySelector('.popup__form_profile');
+export const addCardForm = document.querySelector('.popup__form_add-card');
+export const avatarEditForm = document.querySelector('.popup_update-avatar');

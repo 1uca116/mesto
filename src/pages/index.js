@@ -11,9 +11,7 @@ import * as constants from "../utils/constants.js";
 
 
 const api = new Api(constants.baseUrl, constants.token, constants.groupId);
-let section;
 
-const cardTemplateContent = document.querySelector('#card-template').content;
 const userInfo = new UserInfo('.profile__name','.profile__job', '.profile__photo');
 api.getUserInfo().then(info => {
     userInfo.setUserInfo({name: info.name, job: info.about, id: info._id});
@@ -42,11 +40,11 @@ function renderer(data) {
     ).generateCard();
 }
 
+const sectionData = {userId: userInfo.getUserInfo().id, renderer: renderer}
+const cardSection = new Section(sectionData, document.querySelector('.places'));
 
 api.getInitialCards().then(cards => {
-    const sectionData = {items: cards, userId: userInfo.getUserInfo().id, renderer: renderer}
-    section = new Section(sectionData, document.querySelector('.places'));
-    section.render();
+    cardSection.render(cards);
 })
 
 
@@ -102,7 +100,6 @@ const submitPopup = new SubmitPopup('.popup_confirmation', onSubmitAction);
     popup.setEventListeners();
 });
 
-const editButton = document.querySelector('.profile__edit');
 editButton.addEventListener('click', () => {
     profileFormValidator.resetErrors();
     const data = userInfo.getUserInfo();
@@ -111,26 +108,21 @@ editButton.addEventListener('click', () => {
     profileEditPopup.open();
 });
 
-const addCardButton = document.querySelector('.profile__add-card');
 addCardButton.addEventListener('click', () => {
     addCardFormValidator.resetErrors();
     addCardPopup.open();
 });
 
-const profileOverlayButton = document.querySelector('.profile__overlay');
 profileOverlayButton.addEventListener('click', () => {
     addCardFormValidator.resetErrors();
     updateAvatarPopup.open();
 });
 
-const popupProfileForm = document.querySelector('.popup__form_profile');
 const profileFormValidator = new FormValidator(popupProfileForm, constants.selectors);
 profileFormValidator.enableValidation();
 
-const addCardForm = document.querySelector('.popup__form_add-card');
 const addCardFormValidator = new FormValidator(addCardForm, constants.selectors);
 addCardFormValidator.enableValidation();
 
-const avatarEditForm = document.querySelector('.popup_update-avatar');
 const avatarEditFormValidator = new FormValidator(avatarEditForm, constants.selectors);
 avatarEditFormValidator.enableValidation();

@@ -6,7 +6,7 @@ export class SubmitPopup extends Popup {
         this._onSubmit = onSubmit;
         this._cardId = null;
         this._card = null;
-
+        this._form = this._element.querySelector('.popup__form');
     }
 
     open(cardId, cardElement){
@@ -21,7 +21,7 @@ export class SubmitPopup extends Popup {
     }
 
     _handleSubmitForm() {
-        const form = this._element.querySelector('.popup__form');
+        this._form();
         form.addEventListener('submit', evt => {
             evt.preventDefault();
             console.log(this._card)
