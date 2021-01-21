@@ -22,8 +22,15 @@ export class PopupWithForm extends Popup {
         form.addEventListener('submit', evt => {
             evt.preventDefault();
             const values = this._getInputValues();
-            this._onSubmit(values);
-            this.close();
+            const submitButton = this._element.querySelector('.popup__button-save');
+            const initialText = submitButton.textContent
+            submitButton.textContent = 'Сохранение...'
+            this._onSubmit(values).then(x => {
+                this.close();
+                submitButton.textContent = initialText;
+            }).catch(e => {
+                submitButton.textContent = initialText;
+            });
         })
     }
 

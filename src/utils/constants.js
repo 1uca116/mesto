@@ -25,6 +25,10 @@ export const initialCards = [
     }
 ];
 
+export const token = "70633b92-f713-4bf2-95db-64e42dedc0a6"
+export const groupId = "cohort-19"
+export const baseUrl = "https://mesto.nomoreparties.co"
+
 export const nameInput = document.querySelector('.popup__input_el_name');
 export const jobInput = document.querySelector('.popup__input_el_job');
 

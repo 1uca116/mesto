@@ -4,52 +4,99 @@ import {FormValidator} from "../components/FormValidator.js";
 import {Section} from "../components/Section.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
 import {PopupWithImage} from "../components/PopupWithImage.js";
+import {SubmitPopup} from "../components/SubmitPopup.js";
 import {UserInfo} from "../components/UserInfo.js";
+import {Api} from "../components/Api.js"
 import * as constants from "../utils/constants.js";
+
+
+const api = new Api(constants.baseUrl, constants.token, constants.groupId);
+let section;
 
 const cardTemplateContent = document.querySelector('#card-template').content;
 const userInfo = new UserInfo('.profile__name','.profile__job', '.profile__photo');
+api.getUserInfo().then(info => {
+    userInfo.setUserInfo({name: info.name, job: info.about, id: info._id});
+    userInfo.setUserAvatar(info.avatar);
+});
+
 const imagePopUp = new PopupWithImage('.popup_open-picture');
 
 
-function renderer(imageLink, imageTitle) {
+function renderer(data) {
     return new Card(
-        imageTitle,
-        imageLink,
+        data,
         cardTemplateContent,
-        imagePopUp.open.bind(imagePopUp)).generateCard();
+        imagePopUp.open.bind(imagePopUp),
+        (cardId, cardElement) => {
+            submitPopup.open(cardId, cardElement);
+        },
+        (cardId, isLiked) => {
+            if(isLiked) {
+                return api.dislikeCard(cardId)
+            } else {
+                return api.likeCard(cardId)
+            }
+
+        }
+    ).generateCard();
 }
 
-const sectionData = {items: constants.initialCards, renderer: renderer}
 
-const section = new Section(sectionData, document.querySelector('.places'));
-section.render();
+api.getInitialCards().then(cards => {
+    const sectionData = {items: cards, userId: userInfo.getUserInfo().id, renderer: renderer}
+    section = new Section(sectionData, document.querySelector('.places'));
+    section.render();
+})
+
+
 
 function onProfileEditSubmit(values) {
-    const data = {
-        name: values['profile-name'],
-        job: values['profile-job']
-    }
-    userInfo.setUserInfo(data);
+    const name = values['profile-name'];
+    const about = values['profile-job']
+
+    return api.editUserInfo(name, about).then( info => {
+        userInfo.setUserInfo({name: info.name, job: info.about});
+    })
+
 }
 
 function onAddCardSubmit(values) {
-    const card = renderer(values['card-link'], values['card-name'])
-    section.addCard(card);
+    const name = values['card-name'];
+    const link = values['card-link'];
+    return api.addCard(name, link).then(c => {
+        const card = renderer({
+            id: c._id,
+            link: c.link,
+            name: c.name,
+            likes: c.likes,
+            userId: userInfo.getUserInfo().id,
+            canDelete: c.owner._id === userInfo.getUserInfo().id,
+        })
+        section.addCard(card);
+    })
+
 }
 
-function onAvatarUpdate(values) {
-    userInfo.setUserAvatar(values)
+function onAvatarUpdate(data) {
+    const avatarLink = data['avatar-link']
+    return api.updateAvatar(avatarLink).then(info =>{
+        userInfo.setUserAvatar(info.avatar)
+    });
+
 }
 
-function onSubmitAction() {
-
+function onSubmitAction(cardId, cardElement) {
+    return api.deleteCard(cardId).then(_ => {
+        console.log(cardElement)
+        cardElement.remove();
+    })
 }
 
 const profileEditPopup = new PopupWithForm('.popup_profile', onProfileEditSubmit );
 const addCardPopup = new PopupWithForm('.popup_add-card', onAddCardSubmit );
 const updateAvatarPopup = new PopupWithForm('.popup_update-avatar', onAvatarUpdate);
-const submitPopup = new PopupWithForm('.popup_confirmation-type', onSubmitAction);
+const submitPopup = new SubmitPopup('.popup_confirmation-type', onSubmitAction);
 
 [imagePopUp, profileEditPopup, addCardPopup, updateAvatarPopup, submitPopup].forEach(popup => {
     popup.setEventListeners();

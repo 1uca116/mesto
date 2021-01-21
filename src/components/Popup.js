@@ -23,7 +23,7 @@ export class Popup {
             if (evt.target === this._element){
                 this.close()
             }
-            })
+        })
         this._element.querySelector('.popup__button-close')
             .addEventListener('click', this.close.bind(this))
     }
