@@ -71,7 +71,7 @@ function onAddCardSubmit(values) {
             userId: userInfo.getUserInfo().id,
             canDelete: c.owner._id === userInfo.getUserInfo().id,
         })
-        section.addCard(card);
+        cardSection.addCard(card);
     })
 
 }
