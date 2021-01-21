@@ -13,6 +13,7 @@ import * as constants from "../utils/constants.js";
 const api = new Api(constants.baseUrl, constants.token, constants.groupId);
 
 const userInfo = new UserInfo('.profile__name','.profile__job', '.profile__photo');
+const cardSection = new Section(renderer, document.querySelector('.places'));
 api.getUserInfo().then(info => {
     userInfo.setUserInfo({name: info.name, job: info.about, id: info._id});
     userInfo.setUserAvatar(info.avatar);
@@ -40,14 +41,10 @@ function renderer(data) {
     ).generateCard();
 }
 
-const sectionData = {userId: userInfo.getUserInfo().id, renderer: renderer}
-const cardSection = new Section(sectionData, document.querySelector('.places'));
 
 api.getInitialCards().then(cards => {
-    cardSection.render(cards);
+    cardSection.render(cards, userInfo.getUserInfo().id);
 })
-
-
 
 function onProfileEditSubmit(values) {
     const name = values['profile-name'];
