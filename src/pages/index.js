@@ -96,7 +96,7 @@ function onSubmitAction(cardId, cardElement) {
 const profileEditPopup = new PopupWithForm('.popup_profile', onProfileEditSubmit );
 const addCardPopup = new PopupWithForm('.popup_add-card', onAddCardSubmit );
 const updateAvatarPopup = new PopupWithForm('.popup_update-avatar', onAvatarUpdate);
-const submitPopup = new SubmitPopup('.popup_confirmation-type', onSubmitAction);
+const submitPopup = new SubmitPopup('.popup_confirmation', onSubmitAction);
 
 [imagePopUp, profileEditPopup, addCardPopup, updateAvatarPopup, submitPopup].forEach(popup => {
     popup.setEventListeners();
