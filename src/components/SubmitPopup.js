@@ -7,6 +7,8 @@ export class SubmitPopup extends Popup {
         this._cardId = null;
         this._card = null;
         this._form = this._element.querySelector('.popup__form');
+        this._submitButton = this._element.querySelector('.popup__button-save');
+
     }
 
     open(cardId, cardElement){
@@ -24,14 +26,13 @@ export class SubmitPopup extends Popup {
         this._form.addEventListener('submit', evt => {
             evt.preventDefault();
             console.log(this._card)
-            const submitButton = this._element.querySelector('.popup__button-save');
-            const initialText = submitButton.textContent
-            submitButton.textContent = 'Удаление...';
+            const initialText = this._submitButton.textContent
+            this._submitButton.textContent = 'Удаление...';
             this._onSubmit(this._cardId, this._card).then(x => {
                 this.close();
-                submitButton.textContent = initialText;
+                this._submitButton.textContent = initialText;
             }).catch(e => {
-                submitButton.textContent = initialText;
+                this._submitButton.textContent = initialText;
             });
 
         })
